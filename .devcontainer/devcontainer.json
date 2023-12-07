@@ -1,0 +1,14 @@
+{
+    "name": "VendX",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "customizations": {
+        "vscode": {
+            "settings": {},
+            "extensions": [
+                "streetsidesoftware.code-spell-checker"
+            ]
+        }
+    }
+}
