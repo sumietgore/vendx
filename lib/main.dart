@@ -10,6 +10,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+    print(width);
+    print(height);
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
@@ -50,58 +54,57 @@ class StorePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            leading: IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
-            title: const Center(child: Text('VendX')),
-            actions: [
-              IconButton(
-                icon: const Icon(Icons.shopping_cart_checkout),
-                onPressed: () => {},
-              ),
-              IconButton(
-                  onPressed: () {
-                    Navigator.popAndPushNamed(context, "/");
-                  },
-                  icon: const Icon(Icons.close))
-            ]),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
+        drawer: Drawer(
           child: ListView(
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.all(8.0),
+            // Important: Remove any padding from the ListView.
+            padding: EdgeInsets.zero,
             children: [
-              Container(
-                width: 300,
-                height: 100,
-                child: Text("Hello"),
+              const DrawerHeader(
+                // decoration: BoxDecoration(
+                //   color: Colors.white,
+                // ),
+                child: Text('VendX'),
               ),
-              Container(
-                width: 300,
-                height: 100,
-                child: Text("Hello"),
+              ListTile(
+                leading: const Icon(
+                  Icons.category,
+                ),
+                title: const Text('Categories'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
               ),
-              Container(
-                width: 300,
-                height: 100,
-                child: Text("Hello"),
+              ListTile(
+                leading: const Icon(Icons.inventory),
+                title: const Text("Products"),
+                onTap: () {
+                  Navigator.pop(context);
+                },
               ),
-              Container(
-                width: 300,
-                height: 100,
-                child: Text("Hello"),
-              ),
-              Container(
-                width: 300,
-                height: 100,
-                child: Text("Hello"),
-              ),
-              Container(
-                width: 300,
-                height: 100,
-                child: Text("Hello"),
+              ListTile(
+                leading: const Icon(
+                  Icons.shopping_cart,
+                ),
+                title: const Text('Cart'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
               ),
             ],
           ),
-        ));
+        ),
+        appBar: AppBar(title: const Center(child: Text('VendX')), actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.popAndPushNamed(context, "/");
+              },
+              icon: const Icon(Icons.close))
+        ]),
+        body: const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: SizedBox(
+              width: 100,
+              height: 100,
+            )));
   }
 }
