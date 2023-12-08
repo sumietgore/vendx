@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 import 'pages/splash.dart';
+import 'pages/store.dart';
 
 void main(List<String> args) {
   print(args.toString());
@@ -21,73 +24,14 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.grey),
           useMaterial3: true,
+          textTheme: GoogleFonts.montserratTextTheme(),
         ),
         debugShowCheckedModeBanner: false,
         initialRoute: "/",
         routes: {
-          '/': (context) => StartPage(),
-          '/home': (context) => StorePage(),
+          '/': (context) => const StartPage(),
+          '/home': (context) => const StorePage(),
         });
   }
 }
 
-
-
-class StorePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        drawer: Drawer(
-          child: ListView(
-            // Important: Remove any padding from the ListView.
-            padding: EdgeInsets.zero,
-            children: [
-              const DrawerHeader(
-                // decoration: BoxDecoration(
-                //   color: Colors.white,
-                // ),
-                child: Text('VendX'),
-              ),
-              ListTile(
-                leading: const Icon(
-                  Icons.grid_view_outlined,
-                ),
-                title: const Text('Categories'),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.inventory_outlined),
-                title: const Text("Products"),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                leading: const Icon(
-                  Icons.shopping_cart_outlined,
-                ),
-                title: const Text('Cart'),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-            ],
-          ),
-        ),
-        appBar: AppBar(title: const Center(child: Text('VendX')), actions: [
-          IconButton(
-              onPressed: () {
-                Navigator.popAndPushNamed(context, "/");
-              },
-              icon: const Icon(Icons.close))
-        ]),
-        body: const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: SizedBox(
-              width: 100,
-              height: 100,
-            )));
-  }
-}
