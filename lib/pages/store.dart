@@ -56,18 +56,24 @@ class StorePage extends StatelessWidget {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 48),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24.0),
-              child: Text('Good morning,'),
-            ),
-            const SizedBox(height: 4),
-
-            // Let's order fresh items for you
+            const SizedBox(height: 24),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: Text(
-                "Let's order fresh items for you!",
+                'Good morning,',
+                style: GoogleFonts.montserrat(
+                  fontWeight: FontWeight.normal,
+                  fontSize: 14,
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 4),
+
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: Text(
+                "Let's order some items for you!",
                 style: GoogleFonts.openSans(
                   fontSize: 24,
                   fontWeight: FontWeight.w900,
@@ -88,61 +94,39 @@ class StorePage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: Text(
-                "Categories",
+                "Products",
                 style: GoogleFonts.montserrat(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 16,
                 ),
               ),
             ),
 
             Expanded(
-                child: ListView(
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.all(10.0),
-              children: const [
-                SizedBox(
-                  width: 100,
-                  height: 100,
-                  child: Text("Hello"),
-                ),
-                SizedBox(
-                  width: 100,
-                  height: 100,
-                  child: Text("Hello"),
-                ),
-                SizedBox(
-                  width: 100,
-                  height: 100,
-                  child: Text("Hello"),
-                ),
-                SizedBox(
-                  width: 100,
-                  height: 100,
-                  child: Text("Hello"),
-                ),
-                SizedBox(
-                  width: 100,
-                  height: 100,
-                  child: Text("Hello"),
-                ),
-                SizedBox(
-                  width: 100,
-                  height: 100,
-                  child: Text("Hello"),
-                ),
-                SizedBox(
-                  width: 100,
-                  height: 100,
-                  child: Text("Hello"),
-                ),
-                SizedBox(
-                  width: 100,
-                  height: 100,
-                  child: Text("Hello"),
-                ),
-              ],
-            ))
+                child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 24.0, vertical: 24),
+                    child: GridView.builder(
+                        itemCount: 6,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 12,
+                          mainAxisSpacing: 12,
+                        ),
+                        itemBuilder: (context, index) {
+                          return Container(
+                              decoration: BoxDecoration(
+                                color: Colors.green.shade100,
+                                border: Border.all(
+                                  color: Colors.grey.shade100,
+                                  width: 0,
+                                ),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Center(
+                                  child: Text("Hello " + index.toString())));
+                        })))
           ],
         ));
   }

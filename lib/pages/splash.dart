@@ -12,16 +12,24 @@ class StartPage extends StatelessWidget {
     print(height);
 
     return Scaffold(
-      backgroundColor: Colors.grey[200],
       body: SafeArea(
         child: Center(
           child: Column(
             children: [
               Container(
                 width: width,
-                height: height * 3/4,
-                color: Colors.grey,
-                child: const Center(child: Text("Advertisement"))
+                height: height * 3 / 4,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.black,
+                    width: 1,
+                  ),
+                ),
+                child: const Center(
+                    child: Text(
+                  "Advertisement",
+                  style: TextStyle(color: Colors.black),
+                )),
               ),
               const Expanded(child: SizedBox()),
               Padding(
@@ -31,7 +39,8 @@ class StartPage extends StatelessWidget {
                   height: 48,
                   child: OutlinedButton(
                     style: OutlinedButton.styleFrom(
-                      side: const BorderSide(width: 1.0),
+                      foregroundColor: Colors.black,
+                      side: const BorderSide(width: 0.5, color: Colors.grey),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8.0)),
                     ),
@@ -41,7 +50,10 @@ class StartPage extends StatelessWidget {
                     child: const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.shopping_cart),
+                        Icon(Icons.shopping_cart_outlined),
+                        SizedBox(
+                          width: 8,
+                        ),
                         Text("Start Order"),
                       ],
                     ),

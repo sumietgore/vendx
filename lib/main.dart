@@ -17,12 +17,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    print(width);
-    print(height);
+
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.grey),
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: Colors.white,
+            primary: Colors.black,
+            background: Colors.grey.shade50
+          ),
+          platform: TargetPlatform.linux,
           useMaterial3: true,
           textTheme: GoogleFonts.montserratTextTheme(),
         ),
@@ -34,4 +38,3 @@ class MyApp extends StatelessWidget {
         });
   }
 }
-
