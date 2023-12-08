@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 import './../components/product_card.dart';
 
 Future<List<Product>> fetchProducts() async {
-  final response = await http.get(Uri.parse('http://localhost:8080'));
+  final response = await http.get(Uri.parse('https://vendx-backend.fly.dev/'));
 
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
