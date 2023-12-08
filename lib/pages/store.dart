@@ -81,6 +81,22 @@ class _StorePageState extends State<StorePage> {
 
   @override
   Widget build(BuildContext context) {
+    DateTime now = DateTime.now();
+
+    int hour = now.hour;
+
+    String greeting;
+
+    if (hour >= 6 && hour < 12) {
+      greeting = 'morning!';
+    } else if (hour >= 12 && hour < 18) {
+      greeting = 'afternoon!';
+    } else if (hour >= 18 && hour < 24) {
+      greeting = 'evening!';
+    } else {
+      greeting = 'night!';
+    }
+
     return Scaffold(
         // drawer: Drawer(
         //   child: ListView(
@@ -135,7 +151,7 @@ class _StorePageState extends State<StorePage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: Text(
-                'Good morning,',
+                'Good $greeting',
                 style: GoogleFonts.montserrat(
                   fontWeight: FontWeight.normal,
                   fontSize: 14,
@@ -176,20 +192,31 @@ class _StorePageState extends State<StorePage> {
               child: FutureBuilder(
                 future: products,
                 builder: (context, snapshot) {
-                  if(snapshot.connectionState == ConnectionState.waiting){
-                      return const Center(child: SizedBox(width: 32, height:32, child:CircularProgressIndicator()));
-                  }
-                  else if (snapshot.hasData) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                        child: SizedBox(
+                            width: 32,
+                            height: 32,
+                            child: CircularProgressIndicator()));
+                  } else if (snapshot.hasData) {
                     final products = snapshot.data!;
 
                     return GridView.builder(
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,crossAxisSpacing: 10, mainAxisSpacing:10 ),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 10,
+                              mainAxisSpacing: 10),
                       scrollDirection: Axis.vertical,
                       itemCount: productsLength,
                       padding: const EdgeInsets.all(24),
                       itemBuilder: (context, index) {
                         final product = products[index];
-                        return ProductCard(productName: product.name, productPrice: product.price.toDouble(), productImage: product.image, productDescription: product.description);
+                        return ProductCard(
+                            productName: product.name,
+                            productPrice: product.price.toDouble(),
+                            productImage: product.image,
+                            productDescription: product.description);
                       },
                     );
                   } else {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ProductCard extends StatelessWidget {
   final String productName;
@@ -20,14 +21,12 @@ class ProductCard extends StatelessWidget {
         showModalBottomSheet<void>(
           context: context,
           shape: const RoundedRectangleBorder(
-            // <-- SEE HERE
             borderRadius: BorderRadius.vertical(
-              top: Radius.circular(25.0),
+              top: Radius.circular(16.0),
             ),
           ),
           builder: (BuildContext context) {
             return SizedBox(
-              height: 240,
               child: Container(
                 padding: const EdgeInsets.all(20),
                 child: Column(
@@ -35,22 +34,70 @@ class ProductCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   // mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    const SizedBox(
-                      height: 10,
-                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        ElevatedButton(
-                          child: const Text('X'),
+                        CloseButton(
                           onPressed: () => Navigator.pop(context),
                         ),
                       ],
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 36,
                     ),
-                    const Text('Modal BottomSheet'),
+                    Center(
+                      child: Image.asset(
+                        productImage,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    Center(
+                        child: Text(
+                      productName,
+                      style: GoogleFonts.montserrat(
+                          fontSize: 24, fontWeight: FontWeight.w500),
+                    )),
+                    const SizedBox(
+                      height: 4,
+                    ),
+                    Center(
+                        child: Text(
+                      productDescription,
+                      style: GoogleFonts.openSans(
+                          fontSize: 16, fontWeight: FontWeight.normal),
+                    )),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                      IconButton(
+                          onPressed: () => {}, icon: const Icon(Icons.add)),
+                      const SizedBox(
+                        width: 24,
+                      ),
+                      const Text("1"),
+                      const SizedBox(
+                        width: 24,
+                      ),
+                      IconButton(
+                          onPressed: () => {}, icon: const Icon(Icons.remove))
+                    ]),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    Center(
+                      child: OutlinedButton(
+                        style: OutlinedButton.styleFrom(
+                          elevation: 0,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0)),
+                        ),
+                        onPressed: () => {},
+                        child: const Text("Add to Cart"),
+                      ),
+                    )
                   ],
                 ),
               ),
@@ -58,12 +105,15 @@ class ProductCard extends StatelessWidget {
           },
         );
       },
-      child: Card(
-        color: Colors.grey.shade100,
-        elevation: 0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
-          //set border radius more than 50% of height and width to make circle
+      child: Container(
+        
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: Colors.grey.shade300,
+            width: 1,
+          ),
+          color: Colors.grey.shade100,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

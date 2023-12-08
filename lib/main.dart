@@ -5,7 +5,8 @@ import 'pages/splash.dart';
 import 'pages/store.dart';
 
 void main(List<String> args) {
-  print(args.toString());
+  final now = DateTime.now();
+  print(now);
   runApp(const MyApp());
 }
 
