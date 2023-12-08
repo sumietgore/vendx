@@ -1,0 +1,34 @@
+{
+    "custom-devices": [
+      {
+        "id": "raspberry-pi4",
+        "label": "Rasberry Pi 4",
+        "sdkNameAndVersion": "Rasberry Pi 4",
+        "enabled": true,
+        "platform": "arm64",
+        "backend": "wayland",
+        "ping": [
+          "ping", "-w", "500", "-c", "1", "192.168.0.103"
+        ],
+        "pingSuccessRegex": "ttl=",
+        "install": [
+          "scp", "-r", "${localPath}", "pi@192.168.0.103:/home/pi/${appName}"
+        ],
+        "uninstall": [
+          "ssh", "pi@192.168.0.103", "rm -rf \"/home/pi/${appName}\""
+        ],
+        "runDebug": [
+          "ssh", "pi@192.168.0.103", "/home/pi/${appName}/${appName} -b ."
+        ],
+        "stopApp": [
+          "ssh", "pi@192.168.0.103",
+          "ps aux | grep \"/home/pi/${appName}\" | grep -v grep | awk '{print $2}' | xargs kill"
+        ],
+        "forwardPort": [
+          "ssh", "-o", "ExitOnForwardFailure=yes",
+          "-L", "127.0.0.1:${hostPort}:127.0.0.1:${devicePort}", "pi@192.168.0.103"
+        ],
+        "forwardPortSuccessRegex": "Linux"
+      }
+    ]
+  }

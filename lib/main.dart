@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'pages/splash.dart';
 
-void main() {
+void main(List<String> args) {
+  print(args.toString());
   runApp(const MyApp());
 }
 
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.grey),
           useMaterial3: true,
         ),
         debugShowCheckedModeBanner: false,
@@ -29,26 +31,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class StartPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: OutlinedButton(
-          onPressed: () {
-            Navigator.popAndPushNamed(context, "/home");
-          },
-          child: const Row(
-            children: [
-              Icon(Icons.shopping_cart),
-              Text("Start Order"),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
+
 
 class StorePage extends StatelessWidget {
   @override
@@ -67,7 +50,7 @@ class StorePage extends StatelessWidget {
               ),
               ListTile(
                 leading: const Icon(
-                  Icons.category,
+                  Icons.grid_view_outlined,
                 ),
                 title: const Text('Categories'),
                 onTap: () {
@@ -75,7 +58,7 @@ class StorePage extends StatelessWidget {
                 },
               ),
               ListTile(
-                leading: const Icon(Icons.inventory),
+                leading: const Icon(Icons.inventory_outlined),
                 title: const Text("Products"),
                 onTap: () {
                   Navigator.pop(context);
@@ -83,7 +66,7 @@ class StorePage extends StatelessWidget {
               ),
               ListTile(
                 leading: const Icon(
-                  Icons.shopping_cart,
+                  Icons.shopping_cart_outlined,
                 ),
                 title: const Text('Cart'),
                 onTap: () {
