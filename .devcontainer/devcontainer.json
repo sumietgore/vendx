@@ -10,5 +10,8 @@
                 "streetsidesoftware.code-spell-checker"
             ]
         }
-    }
+    },
+    "runArgs": [
+        "--network=host"
+    ]
 }

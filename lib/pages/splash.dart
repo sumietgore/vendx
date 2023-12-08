@@ -6,10 +6,6 @@ class StartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
-
-    print(width);
-    print(height);
 
     return Scaffold(
       body: SafeArea(
@@ -18,7 +14,7 @@ class StartPage extends StatelessWidget {
             children: [
               Container(
                 width: width,
-                height: height * 3 / 4,
+                height: width,
                 decoration: BoxDecoration(
                   border: Border.all(
                     color: Colors.black,
@@ -31,12 +27,10 @@ class StartPage extends StatelessWidget {
                   style: TextStyle(color: Colors.black),
                 )),
               ),
-              const Expanded(child: SizedBox()),
-              Padding(
-                padding: const EdgeInsets.all(32),
-                child: SizedBox(
-                  width: width * 3 / 4,
-                  height: 48,
+        
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(32),
                   child: OutlinedButton(
                     style: OutlinedButton.styleFrom(
                       foregroundColor: Colors.black,
