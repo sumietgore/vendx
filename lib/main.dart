@@ -5,8 +5,6 @@ import 'pages/splash.dart';
 import 'pages/store.dart';
 
 void main(List<String> args) {
-  final now = DateTime.now();
-  print(now);
   runApp(const MyApp());
 }
 
@@ -18,6 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+    var isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
 
     return MaterialApp(
         title: 'Flutter Demo',

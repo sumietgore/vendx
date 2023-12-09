@@ -13,20 +13,22 @@ class StartPage extends StatelessWidget {
           child: Column(
             children: [
               Advertisement(width: width),
-              Padding(
-                padding: const EdgeInsets.all(32),
-                child: FilledButton.icon(
-                  
-                  style: FilledButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(6.0)),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(32),
+                  child: FilledButton.icon(
+                    
+                    style: FilledButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(6.0)),
+                    ),
+                    onPressed: () {
+                      Navigator.popAndPushNamed(context, "/home");
+                    },
+                    label: const Text("Start Order"),
+                    icon: const Icon(Icons.shopping_cart_outlined),
                   ),
-                  onPressed: () {
-                    Navigator.popAndPushNamed(context, "/home");
-                  },
-                  label: const Text("Start Order"),
-                  icon: const Icon(Icons.shopping_cart_outlined),
                 ),
               ),
             ],
@@ -47,20 +49,11 @@ class Advertisement extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: width,
       height: width,
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Colors.black,
-          width: 1,
-        ),
-      ),
-      child: const Center(
-          child: Text(
-        "Advertisement",
-        style: TextStyle(color: Colors.black),
-      )),
+      child: Center(
+          child: Image.asset("assets/advertisement.jpg")),
     );
   }
 }
