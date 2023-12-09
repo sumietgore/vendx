@@ -23,9 +23,9 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.white,
-            primary: Colors.black,
-            background: Colors.grey.shade50
+            seedColor: Colors.deepPurple,
+            // primary: Colors.black,
+            // background: Colors.grey.shade50
           ),
           platform: TargetPlatform.linux,
           useMaterial3: true,
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         initialRoute: "/",
         routes: {
           '/': (context) => const StartPage(),
-          '/home': (context) => StorePage(),
+          '/home': (context) => const StorePage(),
         });
   }
 }

@@ -12,52 +12,55 @@ class StartPage extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
-              Container(
-                width: width,
-                height: width,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.black,
-                    width: 1,
+              Advertisement(width: width),
+              Padding(
+                padding: const EdgeInsets.all(32),
+                child: FilledButton.icon(
+                  
+                  style: FilledButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(6.0)),
                   ),
-                ),
-                child: const Center(
-                    child: Text(
-                  "Advertisement",
-                  style: TextStyle(color: Colors.black),
-                )),
-              ),
-        
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(32),
-                  child: OutlinedButton(
-                    style: OutlinedButton.styleFrom(
-                      foregroundColor: Colors.black,
-                      side: const BorderSide(width: 0.5, color: Colors.grey),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0)),
-                    ),
-                    onPressed: () {
-                      Navigator.popAndPushNamed(context, "/home");
-                    },
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.shopping_cart_outlined),
-                        SizedBox(
-                          width: 8,
-                        ),
-                        Text("Start Order"),
-                      ],
-                    ),
-                  ),
+                  onPressed: () {
+                    Navigator.popAndPushNamed(context, "/home");
+                  },
+                  label: const Text("Start Order"),
+                  icon: const Icon(Icons.shopping_cart_outlined),
                 ),
               ),
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class Advertisement extends StatelessWidget {
+  const Advertisement({
+    super.key,
+    required this.width,
+  });
+
+  final double width;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: width,
+      height: width,
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: Colors.black,
+          width: 1,
+        ),
+      ),
+      child: const Center(
+          child: Text(
+        "Advertisement",
+        style: TextStyle(color: Colors.black),
+      )),
     );
   }
 }

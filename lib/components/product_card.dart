@@ -69,11 +69,11 @@ class ProductCard extends StatelessWidget {
                           fontSize: 16, fontWeight: FontWeight.normal),
                     )),
                     const SizedBox(
-                      height: 16,
+                      height: 32,
                     ),
                     Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                      IconButton(
-                          onPressed: () => {}, icon: const Icon(Icons.add)),
+                      IconButton.outlined(
+                          onPressed: () => {}, icon: const Icon(Icons.remove)),
                       const SizedBox(
                         width: 24,
                       ),
@@ -81,21 +81,22 @@ class ProductCard extends StatelessWidget {
                       const SizedBox(
                         width: 24,
                       ),
-                      IconButton(
-                          onPressed: () => {}, icon: const Icon(Icons.remove))
+                      IconButton.outlined(
+                          onPressed: () => {}, icon: const Icon(Icons.add))
                     ]),
                     const SizedBox(
-                      height: 24,
+                      height: 32,
                     ),
                     Center(
-                      child: OutlinedButton(
-                        style: OutlinedButton.styleFrom(
+                      child: FilledButton(
+                        style: FilledButton.styleFrom(
                           elevation: 0,
+                          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8.0)),
                         ),
                         onPressed: () => {},
-                        child: const Text("Add to Cart"),
+                        child: Text("Add to Cart", style: GoogleFonts.montserrat(fontSize: 16, fontWeight: FontWeight.w500),),
                       ),
                     )
                   ],
@@ -105,16 +106,23 @@ class ProductCard extends StatelessWidget {
           },
         );
       },
-      child: Container(
-        
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(
-            color: Colors.grey.shade300,
-            width: 1,
+      child: Card(
+        elevation: 0,
+        color: Theme.of(context).colorScheme.surfaceVariant.withOpacity(0.3),
+        shape: RoundedRectangleBorder(
+          side: BorderSide(
+            color: Theme.of(context).colorScheme.outlineVariant,
           ),
-          color: Colors.grey.shade100,
+          borderRadius: const BorderRadius.all(Radius.circular(12)),
         ),
+        // decoration: BoxDecoration(
+        //   borderRadius: BorderRadius.circular(16),
+        //   border: Border.all(
+        //     color: Colors.grey.shade300,
+        //     width: 1,
+        //   ),
+        //   color: Colors.grey.shade100,
+        // ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

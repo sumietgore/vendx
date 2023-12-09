@@ -25,5 +25,6 @@ RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/
 
 
 RUN echo 'export PATH=$PATH:/opt/flutter-elinux/bin' >> ~/.bashrc
+RUN echo "alias run='FLUTTER_ELINUX_CUSTOM_RUN_ARGS="--width=480 --height=800 --window-decoration" flutter-elinux run -d elinux-wayland'"  >> ~/.bashrc
 
 CMD ["/bin/bash"]

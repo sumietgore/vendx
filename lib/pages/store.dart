@@ -137,43 +137,44 @@ class _StorePageState extends State<StorePage> {
         //     ],
         //   ),
         // ),
-        appBar: AppBar(title: const Center(child: Text('VendX')), actions: [
-          IconButton(
+        appBar: AppBar(title: const Text('VendX'), actions: [
+          IconButton.outlined(
               onPressed: () {
                 Navigator.popAndPushNamed(context, "/");
               },
-              icon: const Icon(Icons.close))
+              icon: const Icon(Icons.close)),
+              const SizedBox(width: 12,)
         ]),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 24),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              child: Text(
-                'Good $greeting',
-                style: GoogleFonts.montserrat(
-                  fontWeight: FontWeight.normal,
-                  fontSize: 14,
-                ),
-              ),
-            ),
-            const SizedBox(height: 4),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              child: Text(
-                "Let's order some items for you!",
-                style: GoogleFonts.openSans(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w900,
-                ),
-              ),
-            ),
-            const SizedBox(height: 24),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24.0),
-              child: Divider(),
-            ),
+            // const SizedBox(height: 24),
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            //   child: Text(
+            //     'Good $greeting',
+            //     style: GoogleFonts.montserrat(
+            //       fontWeight: FontWeight.normal,
+            //       fontSize: 14,
+            //     ),
+            //   ),
+            // ),
+            // const SizedBox(height: 4),
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            //   child: Text(
+            //     "Let's order some items for you!",
+            //     style: GoogleFonts.openSans(
+            //       fontSize: 24,
+            //       fontWeight: FontWeight.w900,
+            //     ),
+            //   ),
+            // ),
+            // const SizedBox(height: 24),
+            // const Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: 24.0),
+            //   child: Divider(),
+            // ),
             const SizedBox(height: 24),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
