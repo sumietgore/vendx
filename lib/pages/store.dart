@@ -1,61 +1,10 @@
-import 'dart:async';
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
+import 'package:vendx/providers/product.dart';
 
-import './../components/product_card.dart';
-
-Future<List<Product>> fetchProducts() async {
-  final response = await http.get(Uri.parse('https://vendx-backend.fly.dev/'));
-
-  if (response.statusCode == 200) {
-    // If the server did return a 200 OK response,
-    // then parse the JSON.
-    final jsonData = jsonDecode(response.body);
-    final List<Product> products = [];
-
-    for (Map<String, dynamic> item in jsonData) {
-      Product product = Product.fromJson(item);
-      products.add(product);
-    }
-
-    return products;
-  } else {
-    // If the server did not return a 200 OK response,
-    // then throw an exception.
-    throw Exception('Failed to load album');
-  }
-}
-
-class Product {
-  final String name;
-  final int price;
-  final String image;
-  final String description;
-
-  const Product(
-      {required this.name,
-      required this.price,
-      required this.image,
-      required this.description});
-
-  factory Product.fromJson(Map<String, dynamic> json) {
-    return switch (json) {
-      {
-        'name': String name,
-        'price': int price,
-        'image': String image,
-        'description': String description
-      } =>
-        Product(
-            name: name, price: price, image: image, description: description),
-      _ => throw const FormatException('Failed to load products.'),
-    };
-  }
-}
+import 'package:vendx/components/product_card.dart';
 
 class StorePage extends StatefulWidget {
   const StorePage({super.key});
@@ -65,63 +14,18 @@ class StorePage extends StatefulWidget {
 }
 
 class _StorePageState extends State<StorePage> {
-  late Future<List<Product>> products;
-  int productsLength = 0;
+  late ProductProvider _productProvider;
 
   @override
   void initState() {
+    _productProvider = Provider.of<ProductProvider>(context, listen: false);
+    _productProvider.getProductsData();
     super.initState();
-    products = fetchProducts();
-    setState(() {
-      // Call the setter indirectly
-      products.then((products) {
-        productsLength = products.length;
-      });
-    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // drawer: Drawer(
-        //   child: ListView(
-        //     // Important: Remove any padding from the ListView.
-        //     padding: EdgeInsets.zero,
-        //     children: [
-        //       const DrawerHeader(
-        //         // decoration: BoxDecoration(
-        //         //   color: Colors.white,
-        //         // ),
-        //         child: Text('VendX'),
-        //       ),
-        //       ListTile(
-        //         leading: const Icon(
-        //           Icons.grid_view_outlined,
-        //         ),
-        //         title: const Text('Categories'),
-        //         onTap: () {
-        //           Navigator.pop(context);
-        //         },
-        //       ),
-        //       ListTile(
-        //         leading: const Icon(Icons.inventory_outlined),
-        //         title: const Text("Products"),
-        //         onTap: () {
-        //           Navigator.pop(context);
-        //         },
-        //       ),
-        //       ListTile(
-        //         leading: const Icon(
-        //           Icons.shopping_cart_outlined,
-        //         ),
-        //         title: const Text('Cart'),
-        //         onTap: () {
-        //           Navigator.pop(context);
-        //         },
-        //       ),
-        //     ],
-        //   ),
-        // ),
         appBar: AppBar(
             title: Row(
               children: [
@@ -145,9 +49,7 @@ class _StorePageState extends State<StorePage> {
             ),
             actions: [
               IconButton.outlined(
-                  onPressed: () => {
-                    Navigator.pushNamed(context, "/cart")
-                  },
+                  onPressed: () => {Navigator.pushNamed(context, "/cart")},
                   icon: const Icon(Icons.shopping_cart_outlined)),
               const SizedBox(
                 width: 12,
@@ -161,61 +63,49 @@ class _StorePageState extends State<StorePage> {
                 width: 12,
               )
             ]),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 24),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              child: Text(
-                "Products",
-                style: GoogleFonts.montserrat(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 16,
-                ),
-              ),
-            ),
-            Expanded(
-                child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 0.0, vertical: 4.0),
-              child: FutureBuilder(
-                future: products,
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(
-                        child: SizedBox(
-                            width: 32,
-                            height: 32,
-                            child: CircularProgressIndicator()));
-                  } else if (snapshot.hasData) {
-                    final products = snapshot.data!;
-
-                    return GridView.builder(
+        body: Material(
+          child: Consumer<ProductProvider>(builder: (context, provider, child) {
+            if (provider.loading == true) {
+              return const Center(child: CircularProgressIndicator());
+            } else {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 24),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                    child: Text(
+                      "Products",
+                      style: GoogleFonts.montserrat(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: GridView.builder(
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2,
                               crossAxisSpacing: 10,
                               mainAxisSpacing: 10),
                       scrollDirection: Axis.vertical,
-                      itemCount: productsLength,
+                      itemCount: provider.products.length,
                       padding: const EdgeInsets.all(24),
                       itemBuilder: (context, index) {
-                        final product = products[index];
+                        final product = provider.products[index];
                         return ProductCard(
                             productName: product.name,
                             productPrice: product.price.toDouble(),
                             productImage: product.image,
                             productDescription: product.description);
                       },
-                    );
-                  } else {
-                    return const Text('No data');
-                  }
-                },
-              ),
-            ))
-          ],
+                    ),
+                  ),
+                ],
+              );
+            }
+          }),
         ));
   }
 }

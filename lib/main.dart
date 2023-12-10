@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:vendx/pages/payment.dart';
+import 'package:provider/provider.dart';
 
+import 'package:vendx/pages/payment.dart';
 import 'package:vendx/pages/splash.dart';
 import 'package:vendx/pages/store.dart';
 import 'package:vendx/pages/cart.dart';
 
+import 'providers/product.dart';
+
 void main(List<String> args) {
-  runApp(const MyApp());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider<ProductProvider>(create: (_) => ProductProvider())
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -37,8 +42,8 @@ class MyApp extends StatelessWidget {
         routes: {
           '/': (context) => const StartPage(),
           '/home': (context) => const StorePage(),
-          '/cart':(context) => const CartPage(),
-          '/payment':(context) => const PaymentPage()
+          '/cart': (context) => const CartPage(),
+          '/payment': (context) => const PaymentPage()
         });
   }
 }
