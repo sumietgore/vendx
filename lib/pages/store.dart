@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
 
 import './../components/product_card.dart';
@@ -81,22 +82,6 @@ class _StorePageState extends State<StorePage> {
 
   @override
   Widget build(BuildContext context) {
-    DateTime now = DateTime.now();
-
-    int hour = now.hour;
-
-    String greeting;
-
-    if (hour >= 6 && hour < 12) {
-      greeting = 'morning!';
-    } else if (hour >= 12 && hour < 18) {
-      greeting = 'afternoon!';
-    } else if (hour >= 18 && hour < 24) {
-      greeting = 'evening!';
-    } else {
-      greeting = 'night!';
-    }
-
     return Scaffold(
         // drawer: Drawer(
         //   child: ListView(
@@ -137,44 +122,48 @@ class _StorePageState extends State<StorePage> {
         //     ],
         //   ),
         // ),
-        appBar: AppBar(title: const Text('VendX'), actions: [
-          IconButton.outlined(
-              onPressed: () {
-                Navigator.popAndPushNamed(context, "/");
-              },
-              icon: const Icon(Icons.close)),
-              const SizedBox(width: 12,)
-        ]),
+        appBar: AppBar(
+            title: Row(
+              children: [
+                SizedBox(
+                  width: 24,
+                  height: 24,
+                  child: SvgPicture.asset(
+                    "assets/logo.svg",
+                    fit: BoxFit.contain,
+                  ),
+                ),
+                const SizedBox(
+                  width: 16,
+                ),
+                Text(
+                  "VendX",
+                  style: GoogleFonts.montserrat(
+                      fontSize: 20, fontWeight: FontWeight.w800),
+                )
+              ],
+            ),
+            actions: [
+              IconButton.outlined(
+                  onPressed: () => {
+                    Navigator.pushNamed(context, "/cart")
+                  },
+                  icon: const Icon(Icons.shopping_cart_outlined)),
+              const SizedBox(
+                width: 12,
+              ),
+              IconButton.outlined(
+                  onPressed: () {
+                    Navigator.popAndPushNamed(context, "/");
+                  },
+                  icon: const Icon(Icons.close)),
+              const SizedBox(
+                width: 12,
+              )
+            ]),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // const SizedBox(height: 24),
-            // Padding(
-            //   padding: const EdgeInsets.symmetric(horizontal: 24.0),
-            //   child: Text(
-            //     'Good $greeting',
-            //     style: GoogleFonts.montserrat(
-            //       fontWeight: FontWeight.normal,
-            //       fontSize: 14,
-            //     ),
-            //   ),
-            // ),
-            // const SizedBox(height: 4),
-            // Padding(
-            //   padding: const EdgeInsets.symmetric(horizontal: 24.0),
-            //   child: Text(
-            //     "Let's order some items for you!",
-            //     style: GoogleFonts.openSans(
-            //       fontSize: 24,
-            //       fontWeight: FontWeight.w900,
-            //     ),
-            //   ),
-            // ),
-            // const SizedBox(height: 24),
-            // const Padding(
-            //   padding: EdgeInsets.symmetric(horizontal: 24.0),
-            //   child: Divider(),
-            // ),
             const SizedBox(height: 24),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -221,29 +210,12 @@ class _StorePageState extends State<StorePage> {
                       },
                     );
                   } else {
-                    return Text('No data');
+                    return const Text('No data');
                   }
                 },
               ),
             ))
           ],
-        )
-
-        // body: Center(
-        //   child: FutureBuilder<Album>(
-        //     future: futureAlbum,
-        //     builder: (context, snapshot) {
-        //       if (snapshot.hasData) {
-        //         return Text(snapshot.data!.title);
-        //       } else if (snapshot.hasError) {
-        //         return Text('${snapshot.error}');
-        //       }
-
-        //       // By default, show a loading spinner.
-        //       return const CircularProgressIndicator();
-        //     },
-        //   ),
-        // ),
-        );
+        ));
   }
 }
