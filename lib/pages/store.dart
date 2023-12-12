@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-import 'package:vendx/providers/product.dart';
+import 'package:vendx/providers/shop.dart';
 
 import 'package:vendx/components/product_card.dart';
 
@@ -14,11 +14,11 @@ class StorePage extends StatefulWidget {
 }
 
 class _StorePageState extends State<StorePage> {
-  late ProductProvider _productProvider;
+  late ShopProvider _productProvider;
 
   @override
   void initState() {
-    _productProvider = Provider.of<ProductProvider>(context, listen: false);
+    _productProvider = Provider.of<ShopProvider>(context, listen: false);
     _productProvider.getProductsData();
     super.initState();
   }
@@ -64,7 +64,7 @@ class _StorePageState extends State<StorePage> {
               )
             ]),
         body: Material(
-          child: Consumer<ProductProvider>(builder: (context, provider, child) {
+          child: Consumer<ShopProvider>(builder: (context, provider, child) {
             if (provider.loading == true) {
               return const Center(child: CircularProgressIndicator());
             } else {
@@ -78,10 +78,11 @@ class _StorePageState extends State<StorePage> {
                       "Products",
                       style: GoogleFonts.montserrat(
                         fontWeight: FontWeight.w700,
-                        fontSize: 16,
+                        fontSize: 24,
                       ),
                     ),
                   ),
+                  const SizedBox(height: 12),
                   Expanded(
                     child: GridView.builder(
                       gridDelegate:
@@ -91,10 +92,12 @@ class _StorePageState extends State<StorePage> {
                               mainAxisSpacing: 10),
                       scrollDirection: Axis.vertical,
                       itemCount: provider.products.length,
-                      padding: const EdgeInsets.all(24),
+                      padding: const EdgeInsets.only(
+                          top: 12, left: 24, right: 24, bottom: 12),
                       itemBuilder: (context, index) {
                         final product = provider.products[index];
                         return ProductCard(
+                            product: product,
                             productName: product.name,
                             productPrice: product.price.toDouble(),
                             productImage: product.image,
@@ -102,6 +105,7 @@ class _StorePageState extends State<StorePage> {
                       },
                     ),
                   ),
+                  const SizedBox(height: 24),
                 ],
               );
             }

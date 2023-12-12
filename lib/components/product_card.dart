@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:vendx/models/product.dart';
+import 'package:vendx/providers/shop.dart';
 
 class ProductCard extends StatelessWidget {
+  final Product product;
   final String productName;
   final double productPrice;
   final String productImage;
@@ -9,13 +13,21 @@ class ProductCard extends StatelessWidget {
 
   const ProductCard(
       {super.key,
+      required this.product,
       required this.productName,
       required this.productPrice,
       required this.productImage,
       required this.productDescription});
 
+  void addToCart(Product product, BuildContext context) {
+    final shop = context.read<ShopProvider>();
+    shop.addToCart(product, 1);
+    Navigator.pop(context);
+  }
+
   @override
   Widget build(BuildContext context) {
+    // print(product);
     return GestureDetector(
       onTap: () {
         showModalBottomSheet<void>(
@@ -91,12 +103,17 @@ class ProductCard extends StatelessWidget {
                       child: FilledButton(
                         style: FilledButton.styleFrom(
                           elevation: 0,
-                          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 16, horizontal: 24),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8.0)),
                         ),
-                        onPressed: () => {},
-                        child: Text("Add to Cart", style: GoogleFonts.montserrat(fontSize: 16, fontWeight: FontWeight.w500),),
+                        onPressed: () => addToCart(product, context),
+                        child: Text(
+                          "Add to Cart",
+                          style: GoogleFonts.montserrat(
+                              fontSize: 16, fontWeight: FontWeight.w500),
+                        ),
                       ),
                     )
                   ],
@@ -115,14 +132,6 @@ class ProductCard extends StatelessWidget {
           ),
           borderRadius: const BorderRadius.all(Radius.circular(12)),
         ),
-        // decoration: BoxDecoration(
-        //   borderRadius: BorderRadius.circular(16),
-        //   border: Border.all(
-        //     color: Colors.grey.shade300,
-        //     width: 1,
-        //   ),
-        //   color: Colors.grey.shade100,
-        // ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

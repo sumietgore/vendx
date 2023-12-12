@@ -2,7 +2,6 @@ import "dart:convert";
 
 import 'package:http/http.dart' as http;
 import 'package:vendx/models/product.dart';
-import 'package:vendx/pages/store.dart';
 
 class DataService {
   Future<List<Product>> getProducts() async {
@@ -15,9 +14,14 @@ class DataService {
       final jsonData = jsonDecode(response.body);
       final List<Product> products = [];
 
+      // jsonData.asMap().map((index, value) => print(index + value));
+
+      int currentIndex = 0;
+
       for (Map<String, dynamic> item in jsonData) {
-        Product product = Product.fromJson(item);
+        Product product = Product.fromJson(item, currentIndex);
         products.add(product);
+        currentIndex++;
       }
 
       return products;

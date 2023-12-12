@@ -7,11 +7,11 @@ import 'package:vendx/pages/splash.dart';
 import 'package:vendx/pages/store.dart';
 import 'package:vendx/pages/cart.dart';
 
-import 'providers/product.dart';
+import 'package:vendx/providers/shop.dart';
 
 void main(List<String> args) {
   runApp(MultiProvider(providers: [
-    ChangeNotifierProvider<ProductProvider>(create: (_) => ProductProvider())
+    ChangeNotifierProvider<ShopProvider>(create: (_) => ShopProvider())
   ], child: const MyApp()));
 }
 
@@ -21,10 +21,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
-    var isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
-
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(

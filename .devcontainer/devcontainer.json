@@ -5,7 +5,14 @@
     },
     "customizations": {
         "vscode": {
-            "settings": {},
+            "settings": {
+                "terminal.integrated.profiles.linux": {
+                    "zsh": {
+                        "path": "/bin/zsh"
+                    }
+                },
+                "terminal.integrated.defaultProfile.linux": "zsh"
+            },
             "extensions": [
                 "streetsidesoftware.code-spell-checker"
             ]
