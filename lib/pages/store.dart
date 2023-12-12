@@ -27,11 +27,12 @@ class _StorePageState extends State<StorePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+            toolbarHeight: 72,
             title: Row(
               children: [
                 SizedBox(
-                  width: 24,
-                  height: 24,
+                  width: 32,
+                  height: 32,
                   child: SvgPicture.asset(
                     "assets/logo.svg",
                     fit: BoxFit.contain,
@@ -43,14 +44,17 @@ class _StorePageState extends State<StorePage> {
                 Text(
                   "VendX",
                   style: GoogleFonts.montserrat(
-                      fontSize: 20, fontWeight: FontWeight.w800),
+                      fontSize: 24, fontWeight: FontWeight.w800),
                 )
               ],
             ),
             actions: [
               IconButton.outlined(
                   onPressed: () => {Navigator.pushNamed(context, "/cart")},
-                  icon: const Icon(Icons.shopping_cart_outlined)),
+                  icon: const Icon(
+                    Icons.shopping_cart_outlined,
+                    size: 32,
+                  )),
               const SizedBox(
                 width: 12,
               ),
@@ -60,7 +64,10 @@ class _StorePageState extends State<StorePage> {
                         .removeAll();
                     Navigator.popAndPushNamed(context, "/");
                   },
-                  icon: const Icon(Icons.close)),
+                  icon: const Icon(
+                    Icons.close,
+                    size: 32,
+                  )),
               const SizedBox(
                 width: 12,
               )
@@ -73,7 +80,7 @@ class _StorePageState extends State<StorePage> {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 12),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24.0),
                     child: Text(
