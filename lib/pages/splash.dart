@@ -14,7 +14,7 @@ class StartPage extends StatelessWidget {
           child: Column(
             children: [
               Advertisement(width: width),
-              const Expanded(child: SizedBox()),
+              // const Expanded(child: SizedBox()),
               const StartOrder(),
             ],
           ),
@@ -76,20 +76,25 @@ class StartOrder extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 48.0),
           child: Divider(),
         ),
-        const SizedBox(height: 24,),
+        const SizedBox(
+          height: 24,
+        ),
         Padding(
-          padding: const EdgeInsets.only(bottom: 48 ,left: 24, right: 24),
-          child: FilledButton.icon(
+          padding: const EdgeInsets.only(bottom: 48, left: 24, right: 24),
+          child: FilledButton(
             style: FilledButton.styleFrom(
-              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 28),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(6.0)),
             ),
             onPressed: () {
               Navigator.popAndPushNamed(context, "/home");
             },
-            label: const Text("Start Order"),
-            icon: const Icon(Icons.shopping_cart_outlined),
+            child: Text(
+              "Start Order",
+              style: GoogleFonts.montserrat(
+                  fontSize: 20, fontWeight: FontWeight.normal),
+            ),
           ),
         ),
       ],
