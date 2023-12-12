@@ -37,6 +37,12 @@ class ShopProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  removeAll() {
+    _cart = [];
+    _updateCartTotal();
+    notifyListeners();
+  }
+
   addToCart(Product product, int qty) {
     //check if the product is already present in the cart
     for (int i = 0; i < _cart.length; i++) {

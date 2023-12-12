@@ -56,6 +56,8 @@ class _StorePageState extends State<StorePage> {
               ),
               IconButton.outlined(
                   onPressed: () {
+                    Provider.of<ShopProvider>(context, listen: false)
+                        .removeAll();
                     Navigator.popAndPushNamed(context, "/");
                   },
                   icon: const Icon(Icons.close)),
