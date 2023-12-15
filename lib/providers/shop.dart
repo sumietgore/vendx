@@ -55,7 +55,7 @@ class ShopProvider with ChangeNotifier {
       }
     }
 
-    final int total = product.price * 1;
+    final int total = product.price * qty;
     final _temp = CartItem(
         productId: product.id,
         productPrice: product.price,

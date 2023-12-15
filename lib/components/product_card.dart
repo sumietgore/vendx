@@ -26,9 +26,9 @@ class ProductCard extends StatefulWidget {
 class _ProductCardState extends State<ProductCard> {
   int _qty = 1;
 
-  void addToCart(Product product, BuildContext context) {
+  void addToCart(Product product, int qty, BuildContext context) {
     final shop = context.read<ShopProvider>();
-    shop.addToCart(product, 1);
+    shop.addToCart(product, qty);
     Navigator.pop(context);
   }
 
@@ -51,7 +51,7 @@ class _ProductCardState extends State<ProductCard> {
     // print(product);
     return GestureDetector(
       onTap: () {
-        showModalSheet(context, _qty);
+        showModalSheet(context, setState, _qty);
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -64,7 +64,7 @@ class _ProductCardState extends State<ProductCard> {
               // side: BorderSide(
               //   color: Theme.of(context).colorScheme.outlineVariant,
               // ),
-              borderRadius: BorderRadius.all(Radius.circular(12)),
+              borderRadius: BorderRadius.all(Radius.circular(6)),
             ),
             child: Padding(
               padding: const EdgeInsets.all(16.0),
@@ -94,7 +94,8 @@ class _ProductCardState extends State<ProductCard> {
     );
   }
 
-  Future<void> showModalSheet(BuildContext context, int _qty) {
+  Future<void> showModalSheet(
+      BuildContext context, StateSetter setState, int _qty) {
     return showModalBottomSheet<void>(
       context: context,
       shape: const RoundedRectangleBorder(
@@ -103,91 +104,101 @@ class _ProductCardState extends State<ProductCard> {
         ),
       ),
       builder: (BuildContext context) {
-        return SizedBox(
-          child: Container(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    CloseButton(
-                      onPressed: () => Navigator.pop(context),
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return SizedBox(
+              child: Container(
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        CloseButton(
+                          onPressed: () => Navigator.pop(context),
+                        ),
+                      ],
                     ),
+                    const SizedBox(
+                      height: 36,
+                    ),
+                    Center(
+                      child: Image.asset(
+                        widget.productImage,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    Center(
+                        child: Text(
+                      widget.productName,
+                      style: GoogleFonts.montserrat(
+                          fontSize: 24, fontWeight: FontWeight.w500),
+                    )),
+                    const SizedBox(
+                      height: 4,
+                    ),
+                    Center(
+                        child: Text(
+                      widget.productDescription,
+                      style: GoogleFonts.openSans(
+                          fontSize: 16, fontWeight: FontWeight.normal),
+                    )),
+                    const SizedBox(
+                      height: 32,
+                    ),
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                      IconButton.outlined(
+                          onPressed: () {
+                            setState(() {
+                              _qty -= 1;
+                            });
+                          },
+                          icon: const Icon(Icons.remove)),
+                      const SizedBox(
+                        width: 24,
+                      ),
+                      Text('$_qty'),
+                      const SizedBox(
+                        width: 24,
+                      ),
+                      IconButton.outlined(
+                          onPressed: () {
+                            setState(() {
+                              _qty++;
+                            });
+                          },
+                          icon: const Icon(Icons.add))
+                    ]),
+                    const SizedBox(
+                      height: 32,
+                    ),
+                    Center(
+                      child: FilledButton(
+                        style: FilledButton.styleFrom(
+                          elevation: 0,
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 16, horizontal: 24),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0)),
+                        ),
+                        onPressed: () =>
+                            addToCart(widget.product, _qty, context),
+                        child: Text(
+                          "Add to Cart",
+                          style: GoogleFonts.montserrat(
+                              fontSize: 16, fontWeight: FontWeight.w500),
+                        ),
+                      ),
+                    )
                   ],
                 ),
-                const SizedBox(
-                  height: 36,
-                ),
-                Center(
-                  child: Image.asset(
-                    widget.productImage,
-                  ),
-                ),
-                const SizedBox(
-                  height: 24,
-                ),
-                Center(
-                    child: Text(
-                  widget.productName,
-                  style: GoogleFonts.montserrat(
-                      fontSize: 24, fontWeight: FontWeight.w500),
-                )),
-                const SizedBox(
-                  height: 4,
-                ),
-                Center(
-                    child: Text(
-                  widget.productDescription,
-                  style: GoogleFonts.openSans(
-                      fontSize: 16, fontWeight: FontWeight.normal),
-                )),
-                const SizedBox(
-                  height: 32,
-                ),
-                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  IconButton.outlined(
-                      onPressed: () {
-                        setState(() {
-                          _qty -= 1;
-                        });
-                      },
-                      icon: const Icon(Icons.remove)),
-                  const SizedBox(
-                    width: 24,
-                  ),
-                  Text('$_qty'),
-                  const SizedBox(
-                    width: 24,
-                  ),
-                  IconButton.outlined(
-                      onPressed: _incrementCounter, icon: const Icon(Icons.add))
-                ]),
-                const SizedBox(
-                  height: 32,
-                ),
-                Center(
-                  child: FilledButton(
-                    style: FilledButton.styleFrom(
-                      elevation: 0,
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 16, horizontal: 24),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0)),
-                    ),
-                    onPressed: () => addToCart(widget.product, context),
-                    child: Text(
-                      "Add to Cart",
-                      style: GoogleFonts.montserrat(
-                          fontSize: 16, fontWeight: FontWeight.w500),
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
+              ),
+            );
+          },
         );
       },
     );
