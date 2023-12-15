@@ -48,6 +48,7 @@ class StartOrder extends StatelessWidget {
     }
 
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         const SizedBox(height: 24),
         Padding(
@@ -83,9 +84,11 @@ class StartOrder extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 48, left: 24, right: 24),
           child: FilledButton(
             style: FilledButton.styleFrom(
-              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 28),
+              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(6.0)),
+              backgroundColor: Colors.black,
+              foregroundColor: Colors.white,
             ),
             onPressed: () {
               Navigator.popAndPushNamed(context, "/home");

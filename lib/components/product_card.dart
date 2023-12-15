@@ -53,58 +53,43 @@ class _ProductCardState extends State<ProductCard> {
       onTap: () {
         showModalSheet(context, _qty);
       },
-      child: Card(
-        elevation: 0,
-        color: Theme.of(context).colorScheme.surfaceVariant.withOpacity(0.3),
-        shape: RoundedRectangleBorder(
-          side: BorderSide(
-            color: Theme.of(context).colorScheme.outlineVariant,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Card(
+            elevation: 0,
+            // color: Theme.of(context).colorScheme.surfaceVariant.withOpacity(0.3),
+            color: Colors.grey.shade200,
+            shape: const RoundedRectangleBorder(
+              // side: BorderSide(
+              //   color: Theme.of(context).colorScheme.outlineVariant,
+              // ),
+              borderRadius: BorderRadius.all(Radius.circular(12)),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Image.asset(
+                widget.productImage,
+                width: 48,
+                height: 48,
+              ),
+            ),
           ),
-          borderRadius: const BorderRadius.all(Radius.circular(12)),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              widget.productImage,
-              width: 48,
-              height: 48,
-            ),
-            const SizedBox(height: 10),
-            Text(
-              widget.productName,
-              style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 3),
-            Text(
-              '₹ ${widget.productPrice.toStringAsFixed(2)}',
-              style: const TextStyle(
-                fontSize: 12,
-              ),
-            ),
-            // Center(
-            //   child: Row(
-            //     children: [
-            //       IconButton.outlined(
-            //           onPressed: _decrementCounter,
-            //           icon: const Icon(Icons.remove)),
-            //       const SizedBox(
-            //         width: 24,
-            //       ),
-            //       Text('$_qty'),
-            //       const SizedBox(
-            //         width: 24,
-            //       ),
-            //       IconButton.outlined(
-            //           onPressed: _incrementCounter, icon: const Icon(Icons.add))
-            //     ],
-            //   ),
-            // )
-          ],
-        ),
+          const SizedBox(height: 10),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Text('₹ ${widget.productPrice.toStringAsFixed(2)}',
+                style: GoogleFonts.karla(
+                    fontSize: 16, fontWeight: FontWeight.bold)),
+          ),
+          // const SizedBox(height: 2),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Text(widget.productName,
+                style: GoogleFonts.karla(
+                    fontSize: 12, fontWeight: FontWeight.normal)),
+          ),
+        ],
       ),
     );
   }

@@ -82,27 +82,27 @@ class _StorePageState extends State<StorePage> {
                 children: [
                   const SizedBox(height: 12),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Text(
                       "Products",
                       style: GoogleFonts.montserrat(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
                       ),
                     ),
                   ),
-                  const SizedBox(height: 12),
+                  const SizedBox(height: 8),
                   Expanded(
                     child: GridView.builder(
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 3,
                               crossAxisSpacing: 6,
-                              mainAxisSpacing: 6),
+                              mainAxisSpacing: 16),
                       scrollDirection: Axis.vertical,
                       itemCount: provider.products.length,
                       padding: const EdgeInsets.only(
-                          top: 12, left: 24, right: 24, bottom: 12),
+                          top: 12, left: 16, right: 16, bottom: 12),
                       itemBuilder: (context, index) {
                         final product = provider.products[index];
                         return ProductCard(
@@ -114,7 +114,7 @@ class _StorePageState extends State<StorePage> {
                       },
                     ),
                   ),
-                  const SizedBox(height: 24),
+                  // const SizedBox(height: 24),
                 ],
               );
             }
