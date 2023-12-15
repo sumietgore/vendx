@@ -32,7 +32,7 @@ class CartPage extends StatelessWidget {
                             padding: const EdgeInsets.only(bottom: 12),
                             child: Container(
                               decoration: BoxDecoration(
-                                  color: Colors.deepPurple.shade100,
+                                  color: Colors.grey.shade200,
                                   borderRadius: BorderRadius.circular(10.0)),
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
@@ -47,9 +47,10 @@ class CartPage extends StatelessWidget {
                                       Text(
                                         product.name,
                                         style: GoogleFonts.montserrat(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w600,
-                                            color: Colors.deepPurple.shade900),
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w600,
+                                          // color: Colors.deepPurple.shade900
+                                        ),
                                       ),
                                       // Text(product.price.toString())
                                     ],
@@ -64,6 +65,8 @@ class CartPage extends StatelessWidget {
                                     width: 24,
                                   ),
                                   IconButton.filled(
+                                      style: IconButton.styleFrom(
+                                          backgroundColor: Colors.black),
                                       onPressed: () =>
                                           {shop.removeFromCart(item)},
                                       icon: const Icon(Icons.remove))

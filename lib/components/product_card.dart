@@ -116,7 +116,8 @@ class _ProductCardState extends State<ProductCard> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        CloseButton(
+                        IconButton(
+                          icon: const Icon(Icons.close, size: 32),
                           onPressed: () => Navigator.pop(context),
                         ),
                       ],
@@ -134,66 +135,75 @@ class _ProductCardState extends State<ProductCard> {
                     ),
                     Center(
                         child: Text(
-                      widget.productName,
-                      style: GoogleFonts.montserrat(
-                          fontSize: 24, fontWeight: FontWeight.w500),
+                      '₹ ${(widget.productPrice.toInt() * _qty.toInt())}',
+                      style: GoogleFonts.karla(
+                          fontSize: 20, fontWeight: FontWeight.w500),
                     )),
-                    const SizedBox(
-                      height: 4,
-                    ),
                     Center(
                         child: Text(
-                      widget.productDescription,
-                      style: GoogleFonts.openSans(
-                          fontSize: 16, fontWeight: FontWeight.normal),
+                      widget.productName,
+                      style: GoogleFonts.karla(
+                          fontSize: 18, fontWeight: FontWeight.w500),
                     )),
                     const SizedBox(
-                      height: 32,
+                      height: 24,
                     ),
                     Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                       IconButton.outlined(
                           onPressed: () {
                             setState(() {
-                              _qty -= 1;
+                              if (_qty > 1) {
+                                _qty -= 1;
+                              }
                             });
                           },
-                          icon: const Icon(Icons.remove)),
-                      const SizedBox(
-                        width: 24,
-                      ),
-                      Text('$_qty'),
-                      const SizedBox(
-                        width: 24,
-                      ),
+                          icon: const Icon(
+                            Icons.remove,
+                            size: 32,
+                          )),
+                      SizedBox(
+                          width: 36,
+                          child: Center(
+                              child: Text(
+                            '$_qty',
+                            style: GoogleFonts.karla(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                          ))),
                       IconButton.outlined(
                           onPressed: () {
                             setState(() {
                               _qty++;
                             });
                           },
-                          icon: const Icon(Icons.add))
+                          icon: const Icon(
+                            Icons.add,
+                            size: 32,
+                          ))
                     ]),
                     const SizedBox(
-                      height: 32,
+                      height: 24,
                     ),
-                    Center(
-                      child: FilledButton(
-                        style: FilledButton.styleFrom(
-                          elevation: 0,
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 16, horizontal: 24),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0)),
-                        ),
-                        onPressed: () =>
-                            addToCart(widget.product, _qty, context),
-                        child: Text(
-                          "Add to Cart",
-                          style: GoogleFonts.montserrat(
-                              fontSize: 16, fontWeight: FontWeight.w500),
-                        ),
-                      ),
-                    )
+                    Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          FilledButton(
+                            style: FilledButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 16, horizontal: 24),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(6.0)),
+                              backgroundColor: Colors.black,
+                              foregroundColor: Colors.white,
+                            ),
+                            onPressed: () =>
+                                addToCart(widget.product, _qty, context),
+                            child: Text(
+                              "Add to Cart",
+                              style: GoogleFonts.montserrat(
+                                  fontSize: 18, fontWeight: FontWeight.w500),
+                            ),
+                          ),
+                        ])
                   ],
                 ),
               ),

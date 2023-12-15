@@ -49,7 +49,7 @@ class _StorePageState extends State<StorePage> {
               ],
             ),
             actions: [
-              IconButton.outlined(
+              IconButton(
                   onPressed: () => {Navigator.pushNamed(context, "/cart")},
                   icon: const Icon(
                     Icons.shopping_cart_outlined,
@@ -58,7 +58,7 @@ class _StorePageState extends State<StorePage> {
               const SizedBox(
                 width: 12,
               ),
-              IconButton.outlined(
+              IconButton(
                   onPressed: () {
                     Provider.of<ShopProvider>(context, listen: false)
                         .removeAll();
