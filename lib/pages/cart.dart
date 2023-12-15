@@ -127,7 +127,7 @@ class CartPage extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(6.0)),
                             ),
                             onPressed: () {
-                              Navigator.pushNamed(context, '/payment');
+                              Navigator.pushNamed(context, '/payment/upi');
                             },
                             icon: const Icon(Icons.qr_code),
                             label: const Text("Pay with UPI"))

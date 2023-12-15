@@ -6,6 +6,7 @@ import 'package:vendx/pages/payment.dart';
 import 'package:vendx/pages/splash.dart';
 import 'package:vendx/pages/store.dart';
 import 'package:vendx/pages/cart.dart';
+import 'package:vendx/pages/payment/upi.dart';
 
 import 'package:vendx/providers/shop.dart';
 
@@ -39,7 +40,8 @@ class MyApp extends StatelessWidget {
           '/': (context) => const StartPage(),
           '/home': (context) => const StorePage(),
           '/cart': (context) => const CartPage(),
-          '/payment': (context) => const PaymentPage()
+          '/payment': (context) => const PaymentPage(),
+          '/payment/upi': (context) => const UPIPage()
         });
   }
 }

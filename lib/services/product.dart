@@ -31,4 +31,34 @@ class DataService {
       throw Exception('Failed to fetch products.');
     }
   }
+
+  Future<String> getQRCode(int total) async {
+    try {
+      final body = {
+        "type": "upi_qr",
+        "name": "Store_1",
+        "usage": "single_use",
+        "fixed_amount": true,
+        "payment_amount": total,
+        "description": "For Store 1",
+        "customer_id": "cust_HKsR5se84c5LTO",
+        "close_by": 1681615838,
+        "notes": {"purpose": "Test UPI QR Code notes"}
+      };
+      final headers = {
+        'Content-Type': 'application/json; charset=UTF-8',
+      };
+      final response = await http.post(
+          Uri.parse("https://api.razorpay.com/v1/payments/qr_codes"),
+          body: body);
+      print(response);
+      if (response.statusCode == 200) {
+        return response.body;
+      } else {
+        throw Exception('POST request failed: ${response.statusCode}');
+      }
+    } catch (e) {
+      return "Error";
+    }
+  }
 }

@@ -96,9 +96,9 @@ class _StorePageState extends State<StorePage> {
                     child: GridView.builder(
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              crossAxisSpacing: 10,
-                              mainAxisSpacing: 10),
+                              crossAxisCount: 3,
+                              crossAxisSpacing: 6,
+                              mainAxisSpacing: 6),
                       scrollDirection: Axis.vertical,
                       itemCount: provider.products.length,
                       padding: const EdgeInsets.only(
