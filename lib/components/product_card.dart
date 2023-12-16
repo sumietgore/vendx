@@ -58,6 +58,7 @@ class _ProductCardState extends State<ProductCard> {
         children: [
           Card(
             elevation: 0,
+            color: Colors.grey.shade300,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(6)),
             ),

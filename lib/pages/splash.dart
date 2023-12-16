@@ -14,7 +14,7 @@ class StartPage extends StatelessWidget {
           child: Column(
             children: [
               Advertisement(width: width),
-              Expanded(
+              const Expanded(
                   child: SizedBox(
                 height: 20,
               )),
