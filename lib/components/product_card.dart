@@ -98,6 +98,7 @@ class _ProductCardState extends State<ProductCard> {
       BuildContext context, StateSetter setState, int _qty) {
     return showModalBottomSheet<void>(
       context: context,
+      backgroundColor: Colors.white,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(16.0),
@@ -106,110 +107,117 @@ class _ProductCardState extends State<ProductCard> {
       builder: (BuildContext context) {
         return StatefulBuilder(
           builder: (context, setState) {
-            return SizedBox(
-              child: Container(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        IconButton(
-                          icon: const Icon(Icons.close, size: 32),
-                          onPressed: () => Navigator.pop(context),
+            return Container(
+              height: 370,
+              padding: const EdgeInsets.all(12),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      IconButton.filled(
+                        style: FilledButton.styleFrom(
+                          backgroundColor: Colors.grey.shade100,
+                          foregroundColor: Colors.black,
                         ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 36,
-                    ),
-                    Center(
-                      child: Image.asset(
-                        widget.productImage,
+                        icon: const Icon(Icons.close, size: 32),
+                        onPressed: () => Navigator.pop(context),
                       ),
+                    ],
+                  ),
+                  Center(
+                    child: Image.asset(
+                      widget.productImage,
                     ),
-                    const SizedBox(
-                      height: 24,
-                    ),
-                    Center(
-                        child: Text(
-                      '₹ ${(widget.productPrice.toInt() * _qty.toInt())}',
-                      style: GoogleFonts.karla(
-                          fontSize: 20, fontWeight: FontWeight.w500),
-                    )),
-                    Center(
-                        child: Text(
-                      widget.productName,
-                      style: GoogleFonts.karla(
-                          fontSize: 18, fontWeight: FontWeight.w500),
-                    )),
-                    const SizedBox(
-                      height: 24,
-                    ),
-                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                      IconButton.outlined(
-                          onPressed: () {
-                            setState(() {
-                              if (_qty > 1) {
-                                _qty -= 1;
-                              }
-                            });
-                          },
-                          icon: const Icon(
-                            Icons.remove,
-                            size: 32,
-                          )),
-                      SizedBox(
-                          width: 36,
-                          child: Center(
-                              child: Text(
-                            '$_qty',
-                            style: GoogleFonts.karla(
-                                fontSize: 18, fontWeight: FontWeight.bold),
-                          ))),
-                      IconButton.outlined(
-                          onPressed: () {
-                            setState(() {
-                              _qty++;
-                            });
-                          },
-                          icon: const Icon(
-                            Icons.add,
-                            size: 32,
-                          ))
-                    ]),
-                    const SizedBox(
-                      height: 24,
-                    ),
-                    Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          FilledButton(
-                            style: FilledButton.styleFrom(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 16, horizontal: 24),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(6.0)),
-                              backgroundColor: Colors.black,
-                              foregroundColor: Colors.white,
-                            ),
-                            onPressed: () =>
-                                addToCart(widget.product, _qty, context),
-                            child: SizedBox(
-                              height: 30,
-                              child: Text(
-                                "Add to Cart",
-                                style: GoogleFonts.karla(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.normal),
-                              ),
+                  ),
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  Center(
+                      child: Text(
+                    '₹ ${(widget.productPrice.toInt() * _qty.toInt())}',
+                    style: GoogleFonts.karla(
+                        fontSize: 20, fontWeight: FontWeight.w500),
+                  )),
+                  Center(
+                      child: Text(
+                    widget.productName,
+                    style: GoogleFonts.karla(
+                        fontSize: 18, fontWeight: FontWeight.w500),
+                  )),
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                    IconButton.filled(
+                        style: FilledButton.styleFrom(
+                          backgroundColor: Colors.grey.shade900,
+                          foregroundColor: Colors.grey.shade100,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            if (_qty > 1) {
+                              _qty -= 1;
+                            }
+                          });
+                        },
+                        icon: const Icon(
+                          Icons.remove,
+                          size: 32,
+                        )),
+                    SizedBox(
+                        width: 36,
+                        child: Center(
+                            child: Text(
+                          '$_qty',
+                          style: GoogleFonts.karla(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                        ))),
+                    IconButton.filled(
+                        style: FilledButton.styleFrom(
+                          backgroundColor: Colors.grey.shade900,
+                          foregroundColor: Colors.grey.shade100,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _qty++;
+                          });
+                        },
+                        icon: const Icon(
+                          Icons.add,
+                          size: 32,
+                        ))
+                  ]),
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        FilledButton(
+                          style: FilledButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 16, horizontal: 24),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(6.0)),
+                            backgroundColor: Colors.black,
+                            foregroundColor: Colors.white,
+                          ),
+                          onPressed: () =>
+                              addToCart(widget.product, _qty, context),
+                          child: SizedBox(
+                            height: 30,
+                            child: Text(
+                              "Add to Cart",
+                              style: GoogleFonts.karla(
+                                  fontSize: 18, fontWeight: FontWeight.normal),
                             ),
                           ),
-                        ])
-                  ],
-                ),
+                        ),
+                      ])
+                ],
               ),
             );
           },
