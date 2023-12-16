@@ -47,6 +47,8 @@ class _StorePageState extends State<StorePage> {
         // ),
         appBar: AppBar(
             toolbarHeight: 80,
+            backgroundColor: Colors.white,
+            surfaceTintColor: Colors.white,
             title: Row(
               children: [
                 SizedBox(
