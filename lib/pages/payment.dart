@@ -42,7 +42,6 @@ class PaymentPage extends StatelessWidget {
                           ),
                         )),
                     FilledButton.icon(
-                      s
                         style: FilledButton.styleFrom(
                             padding: const EdgeInsets.symmetric(
                                 vertical: 16, horizontal: 24),
