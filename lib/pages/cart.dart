@@ -42,8 +42,8 @@ class CartPage extends StatelessWidget {
                                     vertical: 12, horizontal: 12),
                                 child: Row(children: [
                                   SizedBox(
-                                      width: 54,
-                                      height: 54,
+                                      width: 48,
+                                      height: 48,
                                       child: Center(
                                           child: Image.asset(product.image))),
                                   Column(
@@ -54,7 +54,7 @@ class CartPage extends StatelessWidget {
                                       Text(
                                         product.name,
                                         style: GoogleFonts.montserrat(
-                                          fontSize: 20,
+                                          fontSize: 18,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
@@ -92,7 +92,7 @@ class CartPage extends StatelessWidget {
                         });
               })),
               Padding(
-                padding: const EdgeInsets.only(bottom: 12),
+                padding: const EdgeInsets.only(top: 12, bottom: 12),
                 child: Column(
                   children: [
                     Row(
