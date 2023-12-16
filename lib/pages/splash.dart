@@ -93,10 +93,15 @@ class StartOrder extends StatelessWidget {
             onPressed: () {
               Navigator.popAndPushNamed(context, "/home");
             },
-            child: Text(
-              "Start Order",
-              style: GoogleFonts.montserrat(
-                  fontSize: 20, fontWeight: FontWeight.normal),
+            child: SizedBox(
+              height: 30,
+              child: Center(
+                child: Text(
+                  "Start Order",
+                  style: GoogleFonts.karla(
+                      fontSize: 18, fontWeight: FontWeight.normal),
+                ),
+              ),
             ),
           ),
         ),

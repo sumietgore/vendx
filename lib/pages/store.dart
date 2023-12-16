@@ -26,8 +26,27 @@ class _StorePageState extends State<StorePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        // floatingActionButton: Padding(
+        //   padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+        //   child: IconButton.filled(
+        //       style: FilledButton.styleFrom(
+        //         backgroundColor: Colors.black,
+        //         foregroundColor: Colors.grey.shade100,
+        //       ),
+        //       onPressed: () {
+        //         Navigator.pushNamed(context, "/cart");
+        //       },
+        //       icon: const SizedBox(
+        //         height: 40,
+        //         width: 40,
+        //         child: Icon(
+        //           Icons.shopping_cart_outlined,
+        //           size: 32,
+        //         ),
+        //       )),
+        // ),
         appBar: AppBar(
-            toolbarHeight: 72,
+            toolbarHeight: 80,
             title: Row(
               children: [
                 SizedBox(
@@ -49,25 +68,40 @@ class _StorePageState extends State<StorePage> {
               ],
             ),
             actions: [
-              IconButton(
+              IconButton.filled(
+                  style: FilledButton.styleFrom(
+                      backgroundColor: Colors.grey.shade100,
+                      foregroundColor: Colors.black,
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 10),
+                      minimumSize: const Size(60, 60)),
                   onPressed: () => {Navigator.pushNamed(context, "/cart")},
                   icon: const Icon(
                     Icons.shopping_cart_outlined,
-                    size: 32,
+                    size: 30,
                   )),
               const SizedBox(
                 width: 12,
               ),
-              IconButton(
-                  onPressed: () {
-                    Provider.of<ShopProvider>(context, listen: false)
-                        .removeAll();
-                    Navigator.popAndPushNamed(context, "/");
-                  },
-                  icon: const Icon(
-                    Icons.close,
-                    size: 32,
-                  )),
+              FilledButton.icon(
+                style: FilledButton.styleFrom(
+                    backgroundColor: Colors.grey.shade100,
+                    foregroundColor: Colors.black,
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 10),
+                    minimumSize: const Size(60, 60)
+                    // minimumSize: Size.fromHeight(36)
+                    ),
+                onPressed: () {
+                  Provider.of<ShopProvider>(context, listen: false).removeAll();
+                  Navigator.popAndPushNamed(context, "/");
+                },
+                icon: const Icon(
+                  Icons.close,
+                  size: 30,
+                ),
+                label: const Text("Cancel Order"),
+              ),
               const SizedBox(
                 width: 12,
               )

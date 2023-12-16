@@ -59,7 +59,7 @@ class _ProductCardState extends State<ProductCard> {
           Card(
             elevation: 0,
             // color: Theme.of(context).colorScheme.surfaceVariant.withOpacity(0.3),
-            color: Colors.grey.shade200,
+            color: Colors.grey.shade300,
             shape: const RoundedRectangleBorder(
               // side: BorderSide(
               //   color: Theme.of(context).colorScheme.outlineVariant,
@@ -197,10 +197,14 @@ class _ProductCardState extends State<ProductCard> {
                             ),
                             onPressed: () =>
                                 addToCart(widget.product, _qty, context),
-                            child: Text(
-                              "Add to Cart",
-                              style: GoogleFonts.montserrat(
-                                  fontSize: 18, fontWeight: FontWeight.w500),
+                            child: SizedBox(
+                              height: 30,
+                              child: Text(
+                                "Add to Cart",
+                                style: GoogleFonts.karla(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.normal),
+                              ),
                             ),
                           ),
                         ])

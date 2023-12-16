@@ -84,8 +84,8 @@ class CartPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Text("Cart Total",
-                            style: GoogleFonts.montserrat(
-                                fontSize: 16, fontWeight: FontWeight.w500)),
+                            style: GoogleFonts.karla(
+                                fontSize: 16, fontWeight: FontWeight.normal)),
                         const SizedBox(
                           width: 12,
                         ),
@@ -93,7 +93,7 @@ class CartPage extends StatelessWidget {
                           builder: (context, shop, child) => Text(
                             shop.total.toString(),
                             style: GoogleFonts.montserrat(
-                                fontSize: 16, fontWeight: FontWeight.w800),
+                                fontSize: 16, fontWeight: FontWeight.bold),
                           ),
                         ),
                         const SizedBox(
@@ -107,8 +107,37 @@ class CartPage extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        OutlinedButton.icon(
-                            style: OutlinedButton.styleFrom(
+                        FilledButton.icon(
+                            style: FilledButton.styleFrom(
+                              backgroundColor: Colors.grey.shade100,
+                              foregroundColor: Colors.black,
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 16, horizontal: 24),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(6.0)),
+                            ),
+                            onPressed: () {
+                              Provider.of<ShopProvider>(context, listen: false)
+                                  .removeAll();
+                              Navigator.popAndPushNamed(context, "/");
+                            },
+                            icon: const Icon(Icons.close),
+                            label: SizedBox(
+                                height: 30,
+                                child: Center(
+                                    child: Text(
+                                  "Cancel Order",
+                                  style: GoogleFonts.karla(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.normal),
+                                )))),
+                        const SizedBox(
+                          width: 24,
+                        ),
+                        FilledButton.icon(
+                            style: FilledButton.styleFrom(
+                              backgroundColor: Colors.black,
+                              foregroundColor: Colors.grey.shade100,
                               padding: const EdgeInsets.symmetric(
                                   vertical: 16, horizontal: 24),
                               shape: RoundedRectangleBorder(
@@ -117,23 +146,16 @@ class CartPage extends StatelessWidget {
                             onPressed: () {
                               Navigator.pushNamed(context, '/payment');
                             },
-                            icon: const Icon(Icons.credit_card),
-                            label: const Text("Pay with Card")),
-                        const SizedBox(
-                          width: 24,
-                        ),
-                        OutlinedButton.icon(
-                            style: OutlinedButton.styleFrom(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 16, horizontal: 24),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(6.0)),
-                            ),
-                            onPressed: () {
-                              Navigator.pushNamed(context, '/payment/upi');
-                            },
-                            icon: const Icon(Icons.qr_code),
-                            label: const Text("Pay with UPI"))
+                            icon: const Icon(Icons.payments_outlined),
+                            label: SizedBox(
+                                height: 30,
+                                child: Center(
+                                    child: Text(
+                                  "Proceed to Payment",
+                                  style: GoogleFonts.karla(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.normal),
+                                ))))
                       ],
                     ),
                   ],
