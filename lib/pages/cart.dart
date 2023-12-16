@@ -38,7 +38,11 @@ class CartPage extends StatelessWidget {
                                 padding: const EdgeInsets.symmetric(
                                     vertical: 12, horizontal: 12),
                                 child: Row(children: [
-                                  Image.asset(product.image),
+                                  SizedBox(
+                                      width: 54,
+                                      height: 54,
+                                      child: Center(
+                                          child: Image.asset(product.image))),
                                   Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment:
@@ -48,25 +52,36 @@ class CartPage extends StatelessWidget {
                                         product.name,
                                         style: GoogleFonts.montserrat(
                                           fontSize: 20,
-                                          fontWeight: FontWeight.w600,
+                                          fontWeight: FontWeight.bold,
                                           // color: Colors.deepPurple.shade900
                                         ),
+                                      ),
+                                      Text(
+                                        'Qty: ${item.qty.toString()}',
+                                        style: GoogleFonts.karla(),
                                       ),
                                       // Text(product.price.toString())
                                     ],
                                   ),
                                   const Expanded(child: SizedBox()),
-                                  Text(item.qty.toString()),
+                                  // Text(item.qty.toString()),
                                   const SizedBox(
                                     width: 24,
                                   ),
-                                  Text(item.productTotal.toString()),
+                                  Text(
+                                    '₹ ${item.productTotal.toString()}',
+                                    style: GoogleFonts.montserrat(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                   const SizedBox(
                                     width: 24,
                                   ),
                                   IconButton.filled(
                                       style: IconButton.styleFrom(
-                                          backgroundColor: Colors.black),
+                                          backgroundColor: Colors.grey.shade900,
+                                          foregroundColor:
+                                              Colors.grey.shade100),
                                       onPressed: () =>
                                           {shop.removeFromCart(item)},
                                       icon: const Icon(Icons.remove))
