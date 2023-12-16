@@ -26,25 +26,6 @@ class _StorePageState extends State<StorePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // floatingActionButton: Padding(
-        //   padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
-        //   child: IconButton.filled(
-        //       style: FilledButton.styleFrom(
-        //         backgroundColor: Colors.black,
-        //         foregroundColor: Colors.grey.shade100,
-        //       ),
-        //       onPressed: () {
-        //         Navigator.pushNamed(context, "/cart");
-        //       },
-        //       icon: const SizedBox(
-        //         height: 40,
-        //         width: 40,
-        //         child: Icon(
-        //           Icons.shopping_cart_outlined,
-        //           size: 32,
-        //         ),
-        //       )),
-        // ),
         appBar: AppBar(
             toolbarHeight: 80,
             backgroundColor: Colors.white,
@@ -91,9 +72,7 @@ class _StorePageState extends State<StorePage> {
                     foregroundColor: Colors.black,
                     padding: const EdgeInsets.symmetric(
                         vertical: 10, horizontal: 10),
-                    minimumSize: const Size(60, 60)
-                    // minimumSize: Size.fromHeight(36)
-                    ),
+                    minimumSize: const Size(60, 60)),
                 onPressed: () {
                   Provider.of<ShopProvider>(context, listen: false).removeAll();
                   Navigator.popAndPushNamed(context, "/");
@@ -102,7 +81,6 @@ class _StorePageState extends State<StorePage> {
                   Icons.close,
                   size: 30,
                 ),
-                // label: const Text("Cancel Order"),
               ),
               const SizedBox(
                 width: 12,
@@ -134,11 +112,11 @@ class _StorePageState extends State<StorePage> {
                           const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 3,
                               crossAxisSpacing: 6,
-                              mainAxisSpacing: 16),
+                              mainAxisSpacing: 24),
                       scrollDirection: Axis.vertical,
                       itemCount: provider.products.length,
                       padding: const EdgeInsets.only(
-                          top: 12, left: 16, right: 16, bottom: 12),
+                          top: 12, left: 16, right: 16, bottom: 24),
                       itemBuilder: (context, index) {
                         final product = provider.products[index];
                         return ProductCard(
@@ -150,7 +128,6 @@ class _StorePageState extends State<StorePage> {
                       },
                     ),
                   ),
-                  // const SizedBox(height: 24),
                 ],
               );
             }

@@ -58,12 +58,7 @@ class _ProductCardState extends State<ProductCard> {
         children: [
           Card(
             elevation: 0,
-            // color: Theme.of(context).colorScheme.surfaceVariant.withOpacity(0.3),
-            color: Colors.grey.shade300,
             shape: const RoundedRectangleBorder(
-              // side: BorderSide(
-              //   color: Theme.of(context).colorScheme.outlineVariant,
-              // ),
               borderRadius: BorderRadius.all(Radius.circular(6)),
             ),
             child: Padding(
@@ -75,19 +70,18 @@ class _ProductCardState extends State<ProductCard> {
               ),
             ),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 8),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Text('₹ ${widget.productPrice.toStringAsFixed(2)}',
                 style: GoogleFonts.karla(
                     fontSize: 16, fontWeight: FontWeight.bold)),
           ),
-          // const SizedBox(height: 2),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Text(widget.productName,
                 style: GoogleFonts.karla(
-                    fontSize: 12, fontWeight: FontWeight.normal)),
+                    fontSize: 13, fontWeight: FontWeight.normal)),
           ),
         ],
       ),

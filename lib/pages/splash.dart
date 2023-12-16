@@ -14,7 +14,10 @@ class StartPage extends StatelessWidget {
           child: Column(
             children: [
               Advertisement(width: width),
-              // const Expanded(child: SizedBox()),
+              Expanded(
+                  child: SizedBox(
+                height: 20,
+              )),
               const StartOrder(),
             ],
           ),
@@ -81,7 +84,7 @@ class StartOrder extends StatelessWidget {
           height: 24,
         ),
         Padding(
-          padding: const EdgeInsets.only(bottom: 48, left: 24, right: 24),
+          padding: const EdgeInsets.only(bottom: 36, left: 24, right: 24),
           child: FilledButton(
             style: FilledButton.styleFrom(
               padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),

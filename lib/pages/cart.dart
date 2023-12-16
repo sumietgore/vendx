@@ -11,7 +11,10 @@ class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text("Cart")),
+        appBar: AppBar(
+          toolbarHeight: 80,
+          title: const Text("Cart"),
+        ),
         body: Padding(
           padding: const EdgeInsets.all(24.0),
           child: Column(
@@ -53,18 +56,15 @@ class CartPage extends StatelessWidget {
                                         style: GoogleFonts.montserrat(
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold,
-                                          // color: Colors.deepPurple.shade900
                                         ),
                                       ),
                                       Text(
                                         'Qty: ${item.qty.toString()}',
                                         style: GoogleFonts.karla(),
                                       ),
-                                      // Text(product.price.toString())
                                     ],
                                   ),
                                   const Expanded(child: SizedBox()),
-                                  // Text(item.qty.toString()),
                                   const SizedBox(
                                     width: 24,
                                   ),
