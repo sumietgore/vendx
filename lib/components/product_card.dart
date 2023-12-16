@@ -208,11 +208,14 @@ class _ProductCardState extends State<ProductCard> {
                           onPressed: () =>
                               addToCart(widget.product, _qty, context),
                           child: SizedBox(
-                            height: 30,
-                            child: Text(
-                              "Add to Cart",
-                              style: GoogleFonts.karla(
-                                  fontSize: 18, fontWeight: FontWeight.normal),
+                            height: 36,
+                            child: Center(
+                              child: Text(
+                                "Add to Cart",
+                                style: GoogleFonts.karla(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.normal),
+                              ),
                             ),
                           ),
                         ),

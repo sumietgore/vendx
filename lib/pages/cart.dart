@@ -123,7 +123,7 @@ class CartPage extends StatelessWidget {
                             },
                             icon: const Icon(Icons.close),
                             label: SizedBox(
-                                height: 30,
+                                height: 36,
                                 child: Center(
                                     child: Text(
                                   "Cancel Order",
@@ -148,7 +148,7 @@ class CartPage extends StatelessWidget {
                             },
                             icon: const Icon(Icons.payments_outlined),
                             label: SizedBox(
-                                height: 30,
+                                height: 36,
                                 child: Center(
                                     child: Text(
                                   "Proceed to Payment",

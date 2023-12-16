@@ -94,7 +94,7 @@ class StartOrder extends StatelessWidget {
               Navigator.popAndPushNamed(context, "/home");
             },
             child: SizedBox(
-              height: 30,
+              height: 36,
               child: Center(
                 child: Text(
                   "Start Order",

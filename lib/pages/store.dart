@@ -83,7 +83,7 @@ class _StorePageState extends State<StorePage> {
               const SizedBox(
                 width: 12,
               ),
-              FilledButton.icon(
+              IconButton.filled(
                 style: FilledButton.styleFrom(
                     backgroundColor: Colors.grey.shade100,
                     foregroundColor: Colors.black,
@@ -100,7 +100,7 @@ class _StorePageState extends State<StorePage> {
                   Icons.close,
                   size: 30,
                 ),
-                label: const Text("Cancel Order"),
+                // label: const Text("Cancel Order"),
               ),
               const SizedBox(
                 width: 12,
