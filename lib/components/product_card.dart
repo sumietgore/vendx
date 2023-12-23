@@ -56,18 +56,20 @@ class _ProductCardState extends State<ProductCard> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Card(
-            elevation: 0,
-            color: Colors.grey.shade300,
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(6)),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Image.asset(
-                widget.productImage,
-                width: 48,
-                height: 48,
+          Expanded(
+            child: Card(
+              elevation: 0,
+              color: Colors.grey.shade300,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(6)),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Image.asset(
+                  widget.productImage,
+                  width: 64,
+                  height: 64,
+                ),
               ),
             ),
           ),

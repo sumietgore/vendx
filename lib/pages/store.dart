@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:badges/badges.dart' as badges;
 import 'package:provider/provider.dart';
 import 'package:vendx/providers/shop.dart';
 
@@ -27,9 +28,10 @@ class _StorePageState extends State<StorePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+            automaticallyImplyLeading: false,
             toolbarHeight: 80,
             backgroundColor: Colors.white,
-            surfaceTintColor: Colors.white,
+            surfaceTintColor: Colors.grey.shade50,
             title: Row(
               children: [
                 SizedBox(
@@ -52,30 +54,29 @@ class _StorePageState extends State<StorePage> {
             ),
             actions: [
               IconButton.filled(
-                  style: FilledButton.styleFrom(
-                      backgroundColor: Colors.grey.shade100,
-                      foregroundColor: Colors.black,
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 10, horizontal: 10),
-                      minimumSize: const Size(60, 60)),
-                  onPressed: () => {Navigator.pushNamed(context, "/cart")},
-                  icon: const Icon(
-                    Icons.shopping_cart_outlined,
-                    size: 30,
-                  )),
+                style: FilledButton.styleFrom(
+                    backgroundColor: Colors.grey.shade200,
+                    foregroundColor: Colors.black,
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 16, horizontal: 16),
+                    minimumSize: const Size(60, 60)),
+                onPressed: () => {Navigator.pushNamed(context, "/cart")},
+                icon: const Icon(Icons.shopping_cart_outlined, size: 30),
+              ),
               const SizedBox(
                 width: 12,
               ),
               IconButton.filled(
                 style: FilledButton.styleFrom(
-                    backgroundColor: Colors.grey.shade100,
+                    backgroundColor: Colors.grey.shade200,
                     foregroundColor: Colors.black,
                     padding: const EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 10),
+                        vertical: 16, horizontal: 16),
                     minimumSize: const Size(60, 60)),
                 onPressed: () {
                   Provider.of<ShopProvider>(context, listen: false).removeAll();
-                  Navigator.popAndPushNamed(context, "/");
+                  Navigator.of(context)
+                      .popUntil((route) => route.settings.name == "/");
                 },
                 icon: const Icon(
                   Icons.close,
@@ -87,26 +88,32 @@ class _StorePageState extends State<StorePage> {
               )
             ]),
         body: Material(
-          child: Consumer<ShopProvider>(builder: (context, provider, child) {
-            if (provider.loading == true) {
-              return const Center(child: CircularProgressIndicator());
-            } else {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 12),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Text(
-                      "Products",
-                      style: GoogleFonts.montserrat(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                      ),
-                    ),
+          color: Colors.grey.shade50,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 12),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Text(
+                  "Products",
+                  style: GoogleFonts.montserrat(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
                   ),
-                  const SizedBox(height: 8),
-                  Expanded(
+                ),
+              ),
+              const SizedBox(height: 8),
+              Consumer<ShopProvider>(builder: (context, provider, child) {
+                if (provider.loading == true) {
+                  return const Expanded(
+                    child: Center(
+                        child: CircularProgressIndicator(
+                      color: Colors.black,
+                    )),
+                  );
+                } else {
+                  return Expanded(
                     child: GridView.builder(
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
@@ -116,7 +123,7 @@ class _StorePageState extends State<StorePage> {
                       scrollDirection: Axis.vertical,
                       itemCount: provider.products.length,
                       padding: const EdgeInsets.only(
-                          top: 12, left: 16, right: 16, bottom: 24),
+                          top: 12, left: 12, right: 12, bottom: 24),
                       itemBuilder: (context, index) {
                         final product = provider.products[index];
                         return ProductCard(
@@ -127,11 +134,11 @@ class _StorePageState extends State<StorePage> {
                             productDescription: product.description);
                       },
                     ),
-                  ),
-                ],
-              );
-            }
-          }),
+                  );
+                }
+              }),
+            ],
+          ),
         ));
   }
 }

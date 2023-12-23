@@ -36,6 +36,8 @@ dependencies:
   http: ^1.1.2
   flutter_svg:
   provider: ^6.1.1
+  badges:
+  qr_flutter: ^4.1.0
 
 dev_dependencies:
   flutter_test:

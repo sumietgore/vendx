@@ -9,17 +9,20 @@ class StartPage extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: Column(
-            children: [
-              Advertisement(width: width),
-              const Expanded(
-                  child: SizedBox(
-                height: 20,
-              )),
-              const StartOrder(),
-            ],
+      body: Material(
+        color: Colors.grey.shade50,
+        child: SafeArea(
+          child: Center(
+            child: Column(
+              children: [
+                Advertisement(width: width),
+                const Expanded(
+                    child: SizedBox(
+                  height: 20,
+                )),
+                const StartOrder(),
+              ],
+            ),
           ),
         ),
       ),
@@ -91,10 +94,10 @@ class StartOrder extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(6.0)),
               backgroundColor: Colors.black,
-              foregroundColor: Colors.white,
+              foregroundColor: Colors.grey.shade200,
             ),
             onPressed: () {
-              Navigator.popAndPushNamed(context, "/home");
+              Navigator.pushNamed(context, "/home");
             },
             child: SizedBox(
               height: 36,
